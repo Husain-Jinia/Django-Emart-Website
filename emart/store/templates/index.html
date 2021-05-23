@@ -4,20 +4,38 @@
 
 {% block content %}
 
-   <!-- body -->
+  
+
+   
     <div class="conatiner-fluid mt-3">
-      <div class="row mx-auto">
-        {%for product in products %}
-        <div class="card mx-auto mb-3" style="width: 18rem;">
-            <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-title">{{product.name}}</p>
-              <p class="card-text">{{product.description}}</p>
-              <p class="card-text"><b>{{product.price}}</b></p>
-              <a href="#" class="btn btn-light border btn-sm">Add to Cart</a>
+      <div class="row">
+        <!-- filter -->
+          <div class="col-lg-3 mx-auto">
+            <div class="list-group">
+              <a href="/" class="list-group-item 
+              list-group-item-action ">All Products</a>
+              {% for category in categories %}
+              <a href="/?category={{category.id}}" class="list-group-item 
+              list-group-item-action ">{{category.name}}</a>
+              {% endfor %}
             </div>
+          </div>
+        <!-- all products -->
+        <div id='products' class="col-lg-8 mx-auto">
+          <div class="row mx-auto">
+            {%for product in products %}
+            <div class="card mx-auto mb-3" style="width: 18rem;">
+                <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-title">{{product.name}}</p>
+                  <p class="card-text">{{product.description}}</p>
+                  <p class="card-text"><b>{{product.price}}</b></p>
+                  <a href="#" class="btn btn-light border btn-sm">Add to Cart</a>
+                </div>
+            </div>
+            {% endfor %}        
+          </div>
         </div>
-        {% endfor %}        
       </div>
     </div>
 
