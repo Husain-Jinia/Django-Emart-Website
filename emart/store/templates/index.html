@@ -30,15 +30,44 @@
                   <p class="card-title">{{product.name}}</p>
                   <p class="card-text">{{product.description}}</p>
                   <p class="card-text"><b>{{product.price}}</b></p>
-                  {{product | is_in_cart:request.session.cart}}
-                  <form action = "/" method="POST">
+                  <!-- {{product | is_in_cart:request.session.cart}} -->
+                  
+                </div>
+                <div class="card-footer p-0 no-gutters">
+                  
+                  {% if product|is_in_cart:request.session.cart %}
+                  <div class="row no-gutters" >
+                    <form action="/" class="col-2" method="POST">
+                      {% csrf_token %}
+                      <input hidden type="text" name ="product" value="{{product.id}}">
+                      <input type="submit" value=" - " class=" btn 
+                        btn-block btn-secondary">
+                      <input hidden type="text" name ="remove" value="True">
+        
+                     </form>
+                    
+                    <div class="text-center col">{{product|cart_quantity:request.session.cart}} in cart</div>
+                    
+                   <form action="/" class="col-2" method="POST">
                     {% csrf_token %}
                     <input hidden type="text" name ="product" value="{{product.id}}">
-                    <input type ="submit" class="btn btn-light 
-                    border btn-sm" value="Add to Cart">
-
+                    <input type="submit" value=" + " class=" btn 
+                      btn-block btn-secondary">
+                   </form>
+                  </div>
+                  {% else  %}
+                  <form action = "/" method="POST" class="btn-block">
+                    {% csrf_token %}
+                    <input hidden type="text" name ="product" value="{{product.id}}">
+                    <input type ="submit" class="float-right btn-block btn btn-light 
+                    border form-control" value="Add to Cart">
+  
                   </form>
+                  {% endif %}
+  
+                  
                 </div>
+                
             </div>
             {% endfor %}        
           </div>
