@@ -4,7 +4,7 @@
 
 {% block content %}
 
-  
+{% load cart %}
 
    
     <div class="conatiner-fluid mt-3">
@@ -30,7 +30,14 @@
                   <p class="card-title">{{product.name}}</p>
                   <p class="card-text">{{product.description}}</p>
                   <p class="card-text"><b>{{product.price}}</b></p>
-                  <a href="#" class="btn btn-light border btn-sm">Add to Cart</a>
+                  {{product | is_in_cart:request.session.cart}}
+                  <form action = "/" method="POST">
+                    {% csrf_token %}
+                    <input hidden type="text" name ="product" value="{{product.id}}">
+                    <input type ="submit" class="btn btn-light 
+                    border btn-sm" value="Add to Cart">
+
+                  </form>
                 </div>
             </div>
             {% endfor %}        
