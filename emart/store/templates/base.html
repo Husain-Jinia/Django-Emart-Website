@@ -25,11 +25,13 @@
               <a class="nav-link active" aria-current="page" href="#">Store</a>
             </li>
           
-          <ul class="navbar-nav d-flex">
+          <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/cart">Cart
+            <span class="badge badge-info">{{request.session.cart.keys|length}}</span></a>
+          </li>
           {% if request.session.customer %}
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/cart">Cart</a>
-            </li>
+            
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/orders">Orders</a>
             </li>
@@ -37,27 +39,15 @@
               <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
             </li>
             {% else %}
+            
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/cart">Cart</a>
+              <a class="nav-link active float-lg-right" aria-current="page" href="signup">Signup</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="signup">Signup</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/login">Login</a>
+              <a class="nav-link active float-lg-right" aria-current="page" href="/login">Login</a>
             </li>
             {% endif %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Profile
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
+            
           </ul>
         </div>
       </div>
